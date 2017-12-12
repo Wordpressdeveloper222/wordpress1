@@ -1,0 +1,19 @@
+/*
+ Theme Name:   WPB Child Theme
+ Theme URI:    http://www.wpbeginner.com/
+ Description:  A Twenty thirteen child theme 
+ Author:       WPBeginner
+ Author URI:   http://www.wpbeginner.com
+ Template:     twentythirteen
+ Version:      1.0.0
+*/
+
+@import url("../twentythirteen/style.css");
+
+.navbar {
+    background-color: #220e10;
+}
+
+.nav-menu li a {
+		
+}

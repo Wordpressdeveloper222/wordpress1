@@ -1,0 +1,106 @@
+.edit_complet_box {
+  border: 1px solid #ddd;
+  float: left;
+  margin: 30px auto;
+  max-width: 350px;
+  padding:10px 15px;
+  width: 100%;
+}
+.title_box {
+  float: left;
+}
+.title_box h2 {
+  margin: 0;
+  font-size: 18px;
+}
+.icon_box {
+  float: right;
+}
+.icon_box a {
+  padding-left: 8px;
+  display: inline-block;
+  cursor: pointer;
+}
+.edit_form {
+  border: 1px solid #ddd;
+  clear: both;
+  display: none;
+  margin: 0 auto;
+  max-width: 500px;
+  padding: 30px;
+  width: 100%;
+    z-index: 2; position: relative; background: #fff;
+}
+.edit_pop{
+	cursor: pointer;
+	}
+	.ui-widget-overlay {
+    opacity: 0.7;
+    background-color: #000000;
+}
+.edit_form label {
+  float: left;
+  width: 30%;
+}
+.edit_form input {
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  padding: 6px 10px;
+  width: 70%;
+}
+.edit_form input[type="checkbox"], .edit_form input[type="radio"] {
+  width: auto;
+}
+.edit_form textarea {
+  box-sizing: border-box;
+  width: 70%;
+  margin-bottom: 15px;
+}
+.edit_form #message_submit {
+  display: block;
+  margin: 15px auto 0;
+  text-align: center;
+  width: auto;
+}
+.edit_form #myFile {
+  padding: 0;
+}
+
+.edit_form .close {
+  border: 1px solid #000;
+  border-radius: 50%;
+  color: #000;
+  display: inline-block;
+  float: right;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0 8px 3px;
+  text-align: right;
+  text-decoration: none;
+  margin-bottom: 15px;
+}
+.edit_form form {
+  clear: both;
+}
+.popup-bg {
+  background-color: #000;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: -1;opacity: 0;
+}
+.popup-bg.open{opacity: 0.5;z-index: 1; cursor: pointer;}
+/*.overlay_box {
+  bottom: 0;
+  cursor: pointer;
+  display: block;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 99;
+  background: rgba(0, 0, 0, 0.4) none repeat scroll 0 0;
+}*/
+

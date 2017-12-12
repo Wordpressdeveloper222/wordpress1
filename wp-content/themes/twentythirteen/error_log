@@ -1,0 +1,5 @@
+[27-Mar-2016 16:26:40 America/Denver] PHP Fatal error:  Call to undefined function get_header() in /home1/mickeyh1/public_html/wp-content/themes/twentythirteen/index.php on line 17
+[27-Mar-2016 16:26:40 America/Denver] PHP Fatal error:  Call to undefined function is_active_sidebar() in /home1/mickeyh1/public_html/wp-content/themes/twentythirteen/sidebar.php on line 14
+[27-Apr-2016 13:07:51 America/Denver] PHP Fatal error:  Call to undefined function get_header() in /home1/mickeyh1/public_html/wp-content/themes/twentythirteen/404.php on line 10
+[01-May-2016 08:24:10 America/Denver] PHP Fatal error:  Call to undefined function get_header() in /home1/mickeyh1/public_html/wp-content/themes/twentythirteen/404.php on line 10
+[03-May-2016 11:11:20 America/Denver] PHP Fatal error:  Call to undefined function get_header() in /home1/mickeyh1/public_html/wp-content/themes/twentythirteen/search.php on line 10

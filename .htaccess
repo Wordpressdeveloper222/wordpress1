@@ -1,0 +1,28 @@
+# BEGIN REMOVE SLUG CUSTOM POST TYPE RULES
+RewriteRule ^acf/(.+)/$ /$1 [R=301,L]
+RewriteRule ^wccpf/(.+)/$ /$1 [R=301,L]
+RewriteRule ^wccaf/(.+)/$ /$1 [R=301,L]
+RewriteRule ^product/(.+)/$ /$1 [R=301,L]
+RewriteRule ^product_variation/(.+)/$ /$1 [R=301,L]
+RewriteRule ^/(.+)/$ /$1 [R=301,L]
+RewriteRule ^shop_order_refund/(.+)/$ /$1 [R=301,L]
+RewriteRule ^/(.+)/$ /$1 [R=301,L]
+RewriteRule ^/(.+)/$ /$1 [R=301,L]
+RewriteRule ^task/(.+)/$ /$1 [R=301,L]
+RewriteRule ^books/(.+)/$ /$1 [R=301,L]
+RewriteRule ^events/(.+)/$ /$1 [R=301,L]
+# END REMOVE SLUG CUSTOM POST TYPE RULES
+
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /wordpress1/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /wordpress1/index.php [L]
+</IfModule>
+
+# END WordPress
+

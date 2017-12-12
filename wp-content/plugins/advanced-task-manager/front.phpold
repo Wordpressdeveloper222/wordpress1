@@ -1,0 +1,181 @@
+<?php /**
+ * @package Task Manager
+ */
+/*
+
+*/
+
+ function task_manage() {
+	 global $post;
+	// $userId = $_SESSION['user_id'];
+	 $args = array( 'post_type' => 'task', 'posts_per_page' => -1 );
+$loop = new WP_Query( $args );
+while ( $loop->have_posts() ) : $loop->the_post();
+ 
+ 
+   ?>
+   
+	   <div class="edit_complet_box">
+         <div class="title_box">
+		  <?php ?>
+            <h2><?php  the_title(); ?></h2>
+         </div>
+         <div class="icon_box">
+            <a class="edit_pop" title="Edit"></a>
+            <a class="cmplt_icon" title="Mark as Complete" onclick="savestatus()"></a>
+         </div>
+      </div>
+      <div class="edit_form" id="open_form">
+         <a class="close" href="#">x</a>
+         <form action="" method="post" id="taskform" enctype="multipart/form-data">
+		 <input type="hidden" name="task_id" id="task_id" value="<?php echo $post->ID; ?>">
+		  <input type="hidden" name="user_id" id="user_id" value="<?php echo get_current_user_id( ); ?>">
+		   <input type="hidden" name="task_status" id="task_status" value="1">
+		
+		 <?php $textbox = get_post_meta($post->ID, '_text', true);
+			   $upload = get_post_meta($post->ID, '_upload', true);
+	           $textarea = get_post_meta($post->ID, '_ta', true);	
+			   $checkbox = get_post_meta($post->ID, '_checkbox', true);
+			   $radio = get_post_meta($post->ID, '_radio', true);			   
+		 if($textbox=="Yes")
+	{?>
+            <p><label for="email"></label><input type="text" size="30" name="text_data" id="text_data" /></p>
+	<?php }
+	 if($textarea=="Yes")
+	{?>
+            <p><label for="body">Description</label><textarea rows="6" name="textarea_data" id="textarea_data" cols="35"></textarea></p>
+	<?php }
+	 if($checkbox=="Yes")
+	{?>
+            <p><label for="body"><?php echo $post->_UpcheckboxText;?> </label>
+			
+			<?php 
+			
+			$r=  $post->_Upcheckbox;
+			$pieces = explode(",", $r);
+			$j = count($pieces);
+			for($i=0; $i <= ($j-1); $i++)
+			{
+				?>
+				<input type="checkbox" name="vehicle[]" id="checkbox_data" value="<?php echo $pieces[$i]; ?>">
+				<?php
+				echo $pieces[$i];
+			} 
+				
+				?>
+			
+
+	<?php } if($radio=="Yes")
+	{?>
+            <p>
+               <label for="body"><?php echo $post->_UpradioText;?>
+			   </label>
+			   
+			   <?php 
+			   $r=  $post->_Upradio;
+			   $pieces = explode(",", $r);
+			   $j = count($pieces);
+			   ?>
+			  <?php 
+			  for($i=0; $i <= ($j-1); $i++)
+						{
+								?><input type="radio" name="gender" id="radio_data" value="<?php echo $pieces[$i]; ?>"><?php 
+							$pieces = explode(",", $r);
+							echo $pieces[$i];
+						} 
+               ?>
+            </p>
+	<?php }if($upload=="Yes")
+	{?>
+            <p><label for="body">Select a file</label><input type="file" name="file" id="file">
+			  
+			
+	<?php } ?>
+             <input type="button" value="Submit Info" name="commit" id="message_submit" onclick="savedata(), upload()"/>  
+         </form>
+      </div>
+      <div class="popup-bg"></div>
+	  <?php endwhile; ?>
+
+	  <script>
+	   function upload(){
+  var formData = new FormData();
+  formData.append("action", "upload-attachment");
+	
+  var fileInputElement = document.getElementById("file");
+  formData.append("async-upload", fileInputElement.files[0]);
+  formData.append("name", fileInputElement.files[0].name);
+  	
+  //also available on page from _wpPluploadSettings.defaults.multipart_params._wpnonce
+  <?php $my_nonce = wp_create_nonce('media-form'); ?>
+  formData.append("_wpnonce", "<?php echo $my_nonce; ?>");
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange=function(){
+    if (xhr.readyState==4 && xhr.status==200){
+      console.log(xhr.responseText);
+    }
+  }
+  xhr.open("POST","/wp-admin/async-upload.php",true);
+  xhr.send(formData);
+}
+	  function savedata()
+{
+	var task_id = jQuery('#task_id').val();
+	var field_1 = jQuery('#text_data').val();
+    var field_2 = jQuery('#textarea_data').val();
+
+var textBoxes=[];   
+jQuery('input[name="vehicle[]"]').each(function(){
+        var ischecked = jQuery(this).is(":checked");
+        if (ischecked) {
+            textBoxes += jQuery(this).val() + ",";
+        }
+    }); 
+	var field_4 = jQuery('input[name=gender]:checked', '#taskform').val();
+	var field_5 = jQuery('#myFile').val();
+     	console.log(field_5);
+	
+	jQuery.post( "<?php echo esc_url( plugins_url( 'ajax/save-data.php',  __FILE__ ) ) ?>", { f0: task_id, f1: field_1, f2:field_2, f3:textBoxes, f4:field_4,f5:field_5 })
+		.done(function( data ) {
+			jQuery("#error").html('<font color="green">'+data+'</font>');
+	}); 
+	 jQuery ("#open_form").hide();
+    jQuery (".popup-bg").removeClass("open");
+}
+
+function savestatus(){
+
+var task_id = jQuery('#user_id').val();
+	var field_1 = jQuery('#task_id').val();
+    var field_2 = jQuery('#task_status').val();
+jQuery.post( "<?php echo esc_url( plugins_url( 'ajax/save-status.php',  __FILE__ ) ) ?>", { f0: task_id, f1: field_1, f2:field_2})
+jQuery.post( "<?php echo esc_url( plugins_url( 'ajax/save-image.php',  __FILE__ ) ) ?>", { value:field_5})
+
+		
+}
+function saveimage(){
+	
+jQuery("#message").empty();
+jQuery('#loading').show();
+jQuery.ajax({
+url: "<?php echo esc_url( plugins_url( 'ajax/save-image.php',  __FILE__ ) ) ?>", // Url to which the request is send
+type: "POST",             // Type of request to be send, called as method
+data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+
+});
+
+/*var task_id = jQuery('#user_id').val();
+	var field_1 = jQuery('#myFile').val();
+    
+jQuery.post( "<?php echo esc_url( plugins_url( 'ajax/save-image.php',  __FILE__ ) ) ?>", { value:field_1})
+
+*/		
+}
+	  </script>
+	  
+	   <?php
+}
+add_shortcode( 'task-manager', 'task_manage' ); 
+
+
+?>

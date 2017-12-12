@@ -1,0 +1,44 @@
+@media (min-width: 1200px) { /* 1170 */
+	/* Normal Size for desktop */
+	.block-streams .post-box-oblog {min-height: 169px;}
+}
+@media (max-width: 1199px) { /* 970 */
+	/* Ads */
+	.vp-1170{display: none;}
+	.vp-750{display: none;}
+	.vp-fluid{display: none;}
+	.vp-970{display: block;}
+	.vp-320{display: none;}
+
+	/* Header */
+
+	/* Category & Archives & Search & Posts Related */
+	.col-sm-8 .el-blocked-slide.maha_royalSlider{height: 340px;}
+	.i-slide .full .detail h2 {font-size: 42px;}
+	.page-sidebar .i-slide .full .detail h2 {font-size: 30px;}
+	.post-box-full h3 {font-size: 28px}
+
+	.meta-author .author-thumb {width: 88px;}
+	.meta-author .author-info {margin-left: 112px;}
+	.post-box-oblog .thumb-wrap img {width: 200px;}
+	.block-streams .post-box-oblog {padding-left: 226px;min-height: 131px;}
+
+	.blocked-carousel .carousel-prev, .blocked-carousel .carousel-next{top: 56px;}
+
+	.page-sidebar .i-slide .detail h2 {font-size: 16px;}
+	.page-sidebar .i-slide .big .detail h2 {font-size: 22px;}
+	.page-sidebar .i-slide .full .detail h2 {font-size: 38px;}
+
+	/* Sidebar */
+	.social_subscribe .social-network{width: 100%;}
+	.widget_ads .ads_box .ads_inner {padding: 28px 21px 24px 21px;}
+
+	/* Single */
+	.next-prev .next{padding-right: 65px;}
+	.next-prev .next i{right: 10px;}
+	.next-prev .prev, .next-prev .prev:last-child{padding-left: 65px;}
+	.next-prev .prev i{left: 10px;}
+
+	.single .cover {min-height: 460px;}
+	.single .cover .detail h1{font-size: 44px;}
+}

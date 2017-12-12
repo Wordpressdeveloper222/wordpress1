@@ -1,0 +1,10 @@
+jQuery(document).ready(function(){
+  jQuery(".edit_pop").click(function(){
+    jQuery(this).siblings("#open_form").show();
+      jQuery(".popup-bg").addClass("open");
+});
+jQuery(".close,.popup-bg").click(function(){
+    jQuery(this).parent("#open_form").hide();
+    jQuery(".popup-bg").removeClass("open");
+});
+});
